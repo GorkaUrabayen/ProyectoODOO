@@ -3,7 +3,7 @@
     'version': '1.0',
     'summary': 'Módulo de reservas de mazmorras y princesas',
     'author': 'Gorka Urabaye, Izan Ramos y Paula Iturbide',
-    'depends': ['base'],
+    'depends': ['base','account'],
     #Data por definir
     'data': [
         'security/ir.model.access.csv',  # Permisos de acceso a los modelos
