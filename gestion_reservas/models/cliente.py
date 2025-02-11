@@ -6,7 +6,7 @@ class Cliente(models.Model):
     esVip = fields.Boolean(string='Descuento cliente VIP',default=False)
     descuento_vip = fields.Float(string='Descuento VIP', compute='_calcular_descuento')
     reservas = fields.One2many('res.booking','cliente_id',string='Reservas')
-    @api.depends(esVip)
+    @api.depends('esVip')
     def _caclular_descuento(self):
         # Calcular descuento si el usuario es vip
         for record in self:
