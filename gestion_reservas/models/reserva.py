@@ -25,12 +25,12 @@ class Reserva(models.Model):
     def _calcular_precio(self):
         for record in self:
             precio_total = sum(record.servicio_ids.mapped('precio'))
-            descuento = 0.10 if record.cliente_id.is_vip else 0.0
+            descuento = (record.cliente_id.descuento_vip / 100) if record.cliente_id.descuento_vip > 0 else 0.0
             record.precio = precio_total * (1 - descuento)
     
     def confirmar_reserva(self):
         for record in self:
-            if record.estado == 'pendiente':
+            if record.estado == 'pendiente' and all(servicio.disponible for servicio in record.servicio_ids):
                 record.estado = 'confirmada'
                 record._generar_factura()
 
@@ -60,3 +60,8 @@ class Reserva(models.Model):
     @api.model
     def cancelar_reserva(self):
         self.cancelar_reserva_automatica()
+    @api.constraints('fecha_hora')
+    def _validar_fecha(self):
+        for record in self:
+            if record.fecha_hora < fields.Datetime.now():
+                raise models.ValidationError('No se pueden hacer reservas en fechas pasadas.')
