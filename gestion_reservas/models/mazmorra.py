@@ -6,5 +6,4 @@ class Mazmorra(models.Model):
 
     name = fields.Char(string='Nombre', required=True)
     descripcion = fields.Text(string='Descripción')
-    reserva_ids = fields.One2many('res.reserva', string='Reservas')
-
+    reserva_id = fields.Many2one('res.booking', string='Reserva', ondelete='cascade')

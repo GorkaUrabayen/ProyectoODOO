@@ -60,7 +60,7 @@ class Reserva(models.Model):
     @api.model
     def cancelar_reserva(self):
         self.cancelar_reserva_automatica()
-    @api.constraints('fecha_hora')
+    @api.constrains('fecha_hora')
     def _validar_fecha(self):
         for record in self:
             if record.fecha_hora < fields.Datetime.now():
