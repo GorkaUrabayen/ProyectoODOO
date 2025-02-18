@@ -1,0 +1,3 @@
+<odoo>
+    <menuitem id="menu_mazmorras" name="Gestión de Mazmorras" sequence="1"/>
+</odoo>
