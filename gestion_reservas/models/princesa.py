@@ -6,4 +6,4 @@ class Princesa(models.Model):
     
     name = fields.Char(string='Nombre', required=True)
     descripcion = fields.Text(string='Descripción')
-    reserva_id = fields.Many2one('res.reserva', string='Reserva', ondelete='set null', unique=True)
+    reserva_id = fields.Many2one('res.booking', string='Reserva', ondelete='cascade')
