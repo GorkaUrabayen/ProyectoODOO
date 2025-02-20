@@ -1,6 +1,5 @@
 <odoo>
     <data>
-
         <!-- Vista de formulario para el modelo 'res.booking' -->
         <record id="view_reserva_form" model="ir.ui.view">
             <field name="name">reserva.form</field>
@@ -9,23 +8,46 @@
                 <form string="Reserva de Mazmorra">
                     <sheet>
                         <group>
-                            <field name="cliente_id"/>
-                            <field name="fecha_hora"/>
-                            <field name="estado"/>
-                            <field name="precio" readonly="1"/>
-                            <field name="mazmorra_ids" widget="one2many_list"/>
-                            <field name="princesa_ids" widget="one2many_list"/>
-                            <field name="servicio_ids" widget="many2many_tags"/>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <field name="cliente_id" class="oe_inline"/>
+                                </div>
+                                <div class="col-md-6">
+                                    <field name="fecha_hora" class="oe_inline"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <field name="estado" class="oe_inline"/>
+                                </div>
+                                <div class="col-md-6">
+                                    <field name="precio" readonly="1" class="oe_inline"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <field name="mazmorra_ids" widget="one2many_list" class="oe_inline"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <field name="princesa_ids" widget="one2many_list" class="oe_inline"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <field name="servicio_ids" widget="many2many_tags" class="oe_inline"/>
+                                </div>
+                            </div>
                         </group>
                     </sheet>
                     <footer>
-                        <button string="Confirmar Reserva" type="object" name="confirmar_reserva" class="btn-primary"/>
-                        <button string="Cancelar Reserva" type="object" name="cancelar_reserva" class="btn-danger"/>
-                        <button string="Cancelar" special="cancel"/>
+                        <button string="Confirmar Reserva" type="object" name="confirmar_reserva" class="btn btn-success fa fa-check-circle"/>
+                        <button string="Cancelar Reserva" type="object" name="cancelar_reserva" class="btn btn-danger fa fa-times-circle"/>
+                        <button string="Cancelar" special="cancel" class="btn btn-secondary fa fa-ban"/>
                     </footer>
                 </form>
             </field>
         </record>
-
     </data>
 </odoo>

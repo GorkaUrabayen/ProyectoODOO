@@ -1,6 +1,5 @@
 <odoo>
     <data>
-
         <!-- Vista de formulario para el modelo 'res.service' -->
         <record id="view_servicio_form" model="ir.ui.view">
             <field name="name">servicio.form</field>
@@ -9,20 +8,35 @@
                 <form string="Servicio">
                     <sheet>
                         <group>
-                            <field name="name"/>
-                            <field name="descripcion"/>
-                            <field name="precio"/>
-                            <field name="duracion"/>
-                            <field name="disponible"/>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <field name="name" class="oe_inline"/>
+                                </div>
+                                <div class="col-md-6">
+                                    <field name="descripcion" class="oe_inline"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <field name="precio" class="oe_inline"/>
+                                </div>
+                                <div class="col-md-6">
+                                    <field name="duracion" class="oe_inline"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <field name="disponible"/>
+                                </div>
+                            </div>
                         </group>
                     </sheet>
                     <footer>
-                        <button string="Guardar" type="object" name="action_save"/>
-                        <button string="Cancelar" special="cancel"/>
+                        <button string="Guardar" type="object" name="action_save" class="btn btn-primary fa fa-check-circle"/>
+                        <button string="Cancelar" special="cancel" class="btn btn-danger fa fa-times-circle"/>
                     </footer>
                 </form>
             </field>
         </record>
-
     </data>
 </odoo>
