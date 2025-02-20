@@ -3,3 +3,4 @@ from . import mazmorra
 from . import princesa
 from . import servicio
 from . import cliente
+from . import res_booking
