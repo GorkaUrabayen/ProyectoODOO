@@ -16,7 +16,7 @@
                         </group>
                     </sheet>
                     <footer>
-                        <button string="Guardar" type="object" name="action_save"/>
+                        <button string="Guardar" type="object" name="create"/>
                         <button string="Cancelar" special="cancel"/>
                     </footer>
                 </form>
