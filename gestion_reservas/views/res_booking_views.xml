@@ -9,6 +9,7 @@
                     <field name="cliente_id"/>
                     <field name="fecha_hora"/>
                     <field name="estado"/>
+                    <field name="precio"/>
                 </tree>
             </field>
         </record>
@@ -25,11 +26,37 @@
                             <field name="fecha_hora"/>
                             <field name="estado"/>
                             <field name="precio" readonly="1"/>
-                            <field name="mazmorra_ids"/>
-                            <field name="princesa_ids"/>
-                            <field name="servicio_ids"/>
+                        </group>
+
+                        <group>
+                            <!-- Añadir las vistas tipo tree para los campos One2many -->
+                            <group name="mazmorra_group">
+                                <field name="mazmorra_ids">
+                                    <tree string="Mazmorras">
+                                        <field name="name"/>
+                                        <field name="descripcion"/>
+                                    </tree>
+                                </field>
+                            </group>
+                            
+                            <group name="princesa_group">
+                                <field name="princesa_ids">
+                                    <tree string="Princesas">
+                                        <field name="nombre"/>
+                                        <field name="tipo"/>
+                                    </tree>
+                                </field>
+                            </group>
+
+                            <!-- Vista Many2many para los servicios -->
+                            <field name="servicio_ids" widget="many2many_tags" options="{'no_create': True}"/>
                         </group>
                     </sheet>
+                    <footer>
+                        <!-- Botones de Confirmar y Cancelar -->
+                        <button name="confirmar_reserva" string="Confirmar" type="object" states="pendiente"/>
+                        <button name="cancelar_reserva" string="Cancelar" type="object" states="pendiente"/>
+                    </footer>
                 </form>
             </field>
         </record>
