@@ -9,13 +9,15 @@
                 <form string="Mazmorra">
                     <sheet>
                         <group>
-                            <field name="name"/>
-                            <field name="descripcion"/>
-                            <field name="reserva_id" widget="one2many_list"/>
+                            <field name="name" string="Nombre de la Mazmorra" required="True"/>
+                            <field name="descripcion" string="Descripción"/>
+                        </group>
+                        <group>
+                            <field name="reserva_id" widget="one2many_list" string="Reservas Asociadas"/>
                         </group>
                     </sheet>
                     <footer>
-                        <button string="Guardar" type="object" name="create"/>
+                        <button string="Guardar" type="object" name="create" class="btn-primary"/>
                         <button string="Cancelar" special="cancel"/>
                     </footer>
                 </form>

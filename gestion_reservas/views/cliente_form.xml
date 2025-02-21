@@ -9,14 +9,18 @@
                 <form string="Cliente">
                     <sheet>
                         <group>
-                            <field name="name"/>
-                            <field name="esVip"/>
-                            <field name="descuento_vip" readonly="1"/>
-                            <field name="reservas" widget="one2many_list"/>
+                            <field name="name" string="Nombre" required="True"/>
+                            <field name="esVip" string="Cliente VIP" 
+                                   widget="boolean_toggle" options="{'terminology': 'clear'}"/>
+                            <field name="descuento_vip" string="Descuento VIP" readonly="1" 
+                                   attrs="{'invisible': [('esVip', '=', False)]}"/>
+                        </group>
+                        <group>
+                            <field name="reservas" widget="one2many_list" string="Reservas del Cliente"/>
                         </group>
                     </sheet>
                     <footer>
-                        <button string="Guardar" type="object" name="create"/>
+                        <button string="Guardar" type="object" name="create" class="btn-primary"/>
                         <button string="Cancelar" special="cancel"/>
                     </footer>
                 </form>
