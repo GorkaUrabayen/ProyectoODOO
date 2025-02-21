@@ -13,8 +13,16 @@
     'data': [
         'security/ir.model.access.csv',
         'security/reservas_security.xml',
-        'views/menu.xml'
+        #vistas
+        'views/actions.xml',
 
+        'views/menu.xml',
+        
+        'views/cliente_form.xml',
+        'views/mazmorra_form.xml',
+        'views/princesa_form.xml',
+        'views/reserva_form.xml',
+        'views/servicio_form.xml'
     ],
     'installable': True,
     'application': True,
