@@ -1,19 +1,43 @@
 <odoo>
-    <data>
-        <!-- Menú principal -->
-        <menuitem id="menu_mazmorras" name="Gestión de Mazmorras" sequence="1"/>
+    <!-- Menú Principal -->
+    <menuitem id="menu_principal" name="Gestión de Mazmorras"/>
 
-        <!-- Submenú de Reservas -->
-        <menuitem id="menu_reservas" name="Reservas" parent="menu_mazmorras" sequence="2"/>
-        <menuitem id="submenu_reservas" name="Todas las Reservas" parent="menu_reservas" action="action_reserva_list"/>
+    <!-- Submenús -->
+    <menuitem id="menu_clientes" name="Clientes" parent="menu_principal" action="action_cliente"/>
+    <menuitem id="menu_mazmorras" name="Mazmorras" parent="menu_principal" action="action_mazmorra"/>
+    <menuitem id="menu_princesas" name="Princesas" parent="menu_principal" action="action_princesa"/>
+    <menuitem id="menu_reservas" name="Reservas" parent="menu_principal" action="action_reserva"/>
+    <menuitem id="menu_servicios" name="Servicios" parent="menu_principal" action="action_servicio"/>
 
-        <!-- Submenú de Mazmorras -->
-        <menuitem id="menu_mazmorras_list" name="Mazmorras" parent="menu_mazmorras" action="action_mazmorra_list"/>
 
-        <!-- Submenú de Princesas -->
-        <menuitem id="menu_princesas_list" name="Princesas" parent="menu_mazmorras" action="action_princesa_list"/>
+    <!-- Acciones -->
+    <record id="action_cliente" model="ir.actions.act_window">
+        <field name="name">Clientes</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+    </record>
 
-        <!-- Submenú de Servicios -->
-        <menuitem id="menu_servicios_list" name="Servicios" parent="menu_mazmorras" action="action_service_list"/>
-    </data>
+    <record id="action_mazmorra" model="ir.actions.act_window">
+        <field name="name">Mazmorras</field>
+        <field name="res_model">res.mazmorra</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_princesa" model="ir.actions.act_window">
+        <field name="name">Princesas</field>
+        <field name="res_model">res.princesa</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_reserva" model="ir.actions.act_window">
+        <field name="name">Reservas</field>
+        <field name="res_model">res.booking</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_servicio" model="ir.actions.act_window">
+        <field name="name">Servicios</field>
+        <field name="res_model">res.service</field>
+        <field name="view_mode">list,form</field>
+    </record>
 </odoo>
