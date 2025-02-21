@@ -1,3 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_reserva_user,reserva user,model_res_booking,base.group_user,1,0,0,0
-access_reserva_admin,reserva admin,model_res_booking,base.group_system,1,1,1,1
+access_reserva_user,reserva user,gestion_reservas.model_res_booking,base.group_user,1,0,0,0
+access_reserva_admin,reserva admin,gestion_reservas.model_res_booking,base.group_system,1,1,1,1
+access_mazmorra_user,mazmorra user,gestion_reservas.model_res_mazmorra,base.group_user,1,0,0,0
+access_mazmorra_admin,mazmorra admin,gestion_reservas.model_res_mazmorra,base.group_system,1,1,1,1
+access_princesa_user,princesa user,gestion_reservas.model_res_princesa,base.group_user,1,0,0,0
+access_princesa_admin,princesa admin,gestion_reservas.model_res_princesa,base.group_system,1,1,1,1
+access_cliente_user,cliente user,base.model_res_partner,base.group_user,1,0,0,0
+access_cliente_admin,cliente admin,base.model_res_partner,base.group_system,1,1,1,1
+access_servicio_user,servicio user,gestion_reservas.model_res_service,base.group_user,1,0,0,0
+access_servicio_admin,servicio admin,gestion_reservas.model_res_service,base.group_system,1,1,1,1
