@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Acción para Clientes -->
+    <record id="action_cliente" model="ir.actions.act_window">
+        <field name="name">Clientes</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Acción para Mazmorras -->
+    <record id="action_mazmorra" model="ir.actions.act_window">
+        <field name="name">Mazmorras</field>
+        <field name="res_model">res.mazmorra</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Acción para Princesas -->
+    <record id="action_princesa" model="ir.actions.act_window">
+        <field name="name">Princesas</field>
+        <field name="res_model">res.princesa</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Acción para Reservas -->
+    <record id="action_reserva" model="ir.actions.act_window">
+        <field name="name">Reservas</field>
+        <field name="res_model">res.booking</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Acción para Servicios -->
+    <record id="action_servicio" model="ir.actions.act_window">
+        <field name="name">Servicios</field>
+        <field name="res_model">res.service</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

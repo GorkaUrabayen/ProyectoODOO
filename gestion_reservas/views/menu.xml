@@ -1,0 +1,43 @@
+<odoo>
+    <!-- Menú Principal -->
+    <menuitem id="menu_principal" name="Gestión de Mazmorras"/>
+
+    <!-- Submenús -->
+    <menuitem id="menu_clientes" name="Clientes" parent="menu_principal" action="action_cliente"/>
+    <menuitem id="menu_mazmorras" name="Mazmorras" parent="menu_principal" action="action_mazmorra"/>
+    <menuitem id="menu_princesas" name="Princesas" parent="menu_principal" action="action_princesa"/>
+    <menuitem id="menu_reservas" name="Reservas" parent="menu_principal" action="action_reserva"/>
+    <menuitem id="menu_servicios" name="Servicios" parent="menu_principal" action="action_servicio"/>
+
+
+    <!-- Acciones -->
+    <record id="action_cliente" model="ir.actions.act_window">
+        <field name="name">Clientes</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_mazmorra" model="ir.actions.act_window">
+        <field name="name">Mazmorras</field>
+        <field name="res_model">res.mazmorra</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_princesa" model="ir.actions.act_window">
+        <field name="name">Princesas</field>
+        <field name="res_model">res.princesa</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_reserva" model="ir.actions.act_window">
+        <field name="name">Reservas</field>
+        <field name="res_model">res.booking</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_servicio" model="ir.actions.act_window">
+        <field name="name">Servicios</field>
+        <field name="res_model">res.service</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
