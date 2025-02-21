@@ -10,10 +10,9 @@
                     <sheet>
                         <group>
                             <field name="name" string="Nombre" required="True"/>
-                            <field name="esVip" string="Cliente VIP" 
-                                   widget="boolean_toggle" options="{'terminology': 'clear'}"/>
+                            <field name="esVip" string="Cliente VIP" widget="boolean_toggle" options="{'terminology': 'clear'}"/>
                             <field name="descuento_vip" string="Descuento VIP" readonly="1" 
-                                   attrs="{'invisible': [('esVip', '=', False)]}"/>
+                                   modifiers="{'invisible': [('esVip', '=', False)]}"/>
                         </group>
                         <group>
                             <field name="reservas" widget="one2many_list" string="Reservas del Cliente"/>
