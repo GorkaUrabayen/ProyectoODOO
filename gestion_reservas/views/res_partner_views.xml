@@ -1,0 +1,38 @@
+<odoo>
+    <!-- Modificación de la vista original de clientes -->
+    <record id="view_partner_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.reservas</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <!-- Añadir el campo "es_vip" después del campo "email" -->
+            <xpath expr="//form//sheet//group[last()]" position="after">
+                <group>
+                    <field name="es_vip" widget="boolean_toggle" string="¿Cliente VIP?"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Vista de lista de clientes -->
+    <record id="view_partner_list_inherit" model="ir.ui.view">
+        <field name="name">res.partner.list.inherit.reservas</field>
+        <field name="model">res.partner</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="es_vip" widget="boolean_toggle" string="¿VIP?"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Acción para abrir la vista de clientes -->
+    <record id="action_clientes" model="ir.actions.act_window">
+        <field name="name">Clientes</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menú de clientes dentro de Gestión de Reservas -->
+    <menuitem id="menu_clientes" name="Clientes" parent="menu_gestion_reservas" sequence="2" action="action_clientes"/>
+</odoo>

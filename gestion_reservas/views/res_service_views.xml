@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <!-- Vista de lista -->
+        <record id="view_service_tree" model="ir.ui.view">
+            <field name="name">service.tree</field>
+            <field name="model">res.service</field>
+            <field name="arch" type="xml">
+                <tree string="Servicios">
+                    <field name="nombre"/>
+                    <field name="precio"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Vista de formulario -->
+        <record id="view_service_form" model="ir.ui.view">
+            <field name="name">service.form</field>
+            <field name="model">res.service</field>
+            <field name="arch" type="xml">
+                <form string="Detalles del Servicio">
+                    <sheet>
+                        <group>
+                            <field name="nombre"/>
+                            <field name="descripcion"/>
+                            <field name="precio"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

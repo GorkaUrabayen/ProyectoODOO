@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <!-- Vista de lista -->
+        <record id="view_mazmorra_tree" model="ir.ui.view">
+            <field name="name">mazmorra.tree</field>
+            <field name="model">res.mazmorra</field>
+            <field name="arch" type="xml">
+                <tree string="Mazmorras">
+                    <field name="nombre"/>
+                    <field name="ubicacion"/>
+                    <field name="capacidad"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Vista de formulario -->
+        <record id="view_mazmorra_form" model="ir.ui.view">
+            <field name="name">mazmorra.form</field>
+            <field name="model">res.mazmorra</field>
+            <field name="arch" type="xml">
+                <form string="Detalles de la Mazmorra">
+                    <sheet>
+                        <group>
+                            <field name="nombre"/>
+                            <field name="ubicacion"/>
+                            <field name="capacidad"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

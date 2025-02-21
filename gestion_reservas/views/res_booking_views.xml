@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+        <!-- Vista de lista -->
+        <record id="view_reserva_tree" model="ir.ui.view">
+            <field name="name">reserva.tree</field>
+            <field name="model">res.booking</field>
+            <field name="arch" type="xml">
+                <tree string="Reservas">
+                    <field name="cliente_id"/>
+                    <field name="fecha_hora"/>
+                    <field name="estado"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Vista de formulario -->
+        <record id="view_reserva_form" model="ir.ui.view">
+            <field name="name">reserva.form</field>
+            <field name="model">res.booking</field>
+            <field name="arch" type="xml">
+                <form string="Reserva de Mazmorra">
+                    <sheet>
+                        <group>
+                            <field name="cliente_id"/>
+                            <field name="fecha_hora"/>
+                            <field name="estado"/>
+                            <field name="precio" readonly="1"/>
+                            <field name="mazmorra_ids"/>
+                            <field name="princesa_ids"/>
+                            <field name="servicio_ids"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

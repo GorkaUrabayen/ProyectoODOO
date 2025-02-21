@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <!-- Menú principal -->
+        <menuitem id="menu_mazmorras" name="Gestión de Mazmorras" sequence="1"/>
+
+        <!-- Submenú de Reservas -->
+        <menuitem id="menu_reservas" name="Reservas" parent="menu_mazmorras" sequence="2"/>
+        <menuitem id="submenu_reservas" name="Todas las Reservas" parent="menu_reservas" action="action_reserva_list"/>
+
+        <!-- Submenú de Mazmorras -->
+        <menuitem id="menu_mazmorras_list" name="Mazmorras" parent="menu_mazmorras" action="action_mazmorra_list"/>
+
+        <!-- Submenú de Princesas -->
+        <menuitem id="menu_princesas_list" name="Princesas" parent="menu_mazmorras" action="action_princesa_list"/>
+
+        <!-- Submenú de Servicios -->
+        <menuitem id="menu_servicios_list" name="Servicios" parent="menu_mazmorras" action="action_service_list"/>
+    </data>
+</odoo>

@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <!-- Vista de lista -->
+        <record id="view_princesa_tree" model="ir.ui.view">
+            <field name="name">princesa.tree</field>
+            <field name="model">res.princesa</field>
+            <field name="arch" type="xml">
+                <tree string="Princesas">
+                    <field name="nombre"/>
+                    <field name="edad"/>
+                    <field name="rescatada"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Vista de formulario -->
+        <record id="view_princesa_form" model="ir.ui.view">
+            <field name="name">princesa.form</field>
+            <field name="model">res.princesa</field>
+            <field name="arch" type="xml">
+                <form string="Detalles de la Princesa">
+                    <sheet>
+                        <group>
+                            <field name="nombre"/>
+                            <field name="edad"/>
+                            <field name="rescatada"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

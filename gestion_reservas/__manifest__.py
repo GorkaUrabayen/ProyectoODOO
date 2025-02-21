@@ -8,18 +8,19 @@
     """,
     'category': 'Services',
     'author': 'Gorka Urabayen, Izan Ramos y Paula Iturbide',
-    'depends': ['base','account'],
+    'depends': ['base', 'account'],
     'images': ['static/description/icon.png'],
     'data': [
         'security/ir.model.access.csv',
         'security/reservas_security.xml',
-        #vistas
-        'views/cliente_form.xml',
-        'views/mazmorra_form.xml',
-        'views/menu.xml',
-        'views/princesa_form.xml',
-        'views/reserva_form.xml',
-        'views/servicio_form.xml'
+        # Vistas
+        'views/reservas_mazmorras_menus.xml',  # Menús principales
+        'views/reservas_mazmorras_views.xml',  # Vistas generales
+        'views/res_booking_views.xml',         # Vistas de reservas
+        'views/res_princesa_views.xml',        # Vistas de princesas
+        'views/res_mazmorra_views.xml',        # Vistas de mazmorras
+        'views/res_service_views.xml',         # Vistas de servicios
+        'views/res_partner_views.xml',         # Vistas de clientes
     ],
     'installable': True,
     'application': True,
