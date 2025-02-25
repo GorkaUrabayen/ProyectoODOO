@@ -1,15 +1,20 @@
 from odoo import models, fields, api
 
-class Cliente(models.Model):
+class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    esVip = fields.Boolean(string='Descuento cliente VIP',default=False)
-    descuento_vip = fields.Float(string='Descuento VIP', compute='_calcular_descuento')
-    reservas = fields.One2many('res.booking', 'cliente_id', string='Reservas')
-    @api.onchange('esVip')
-    def _onchange_esVip(self):
+    es_vip = fields.Boolean(string="Cliente VIP", compute="_compute_es_vip")
+    descuento_vip = fields.Float(string="Descuento VIP", compute="_compute_descuento_vip")
+
+    @api.depends('category_id')
+    def _compute_es_vip(self):
         for record in self:
-            if record.esVip:
-                record.descuento_vip = 10.0
+            record.es_vip = any(category.name == 'VIP' for category in record.category_id)
+
+    @api.depends('es_vip')
+    def _compute_descuento_vip(self):
+        for record in self:
+            if record.es_vip:
+                record.descuento_vip = 10.0  # 10% de descuento
             else:
                 record.descuento_vip = 0.0
