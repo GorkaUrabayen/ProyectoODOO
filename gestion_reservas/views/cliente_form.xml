@@ -1,23 +1,41 @@
 <odoo>
     <data>
 
-        <!-- Vista de formulario para el modelo 'res.partner' (Cliente) -->
+        <!-- Vista de formulario para el modelo 'res.partner' -->
         <record id="view_cliente_form" model="ir.ui.view">
             <field name="name">cliente.form</field>
             <field name="model">res.partner</field>
             <field name="arch" type="xml">
                 <form string="Cliente">
                     <sheet>
+                        <!-- Primer grupo de campos principales -->
                         <group>
-                            <field name="name"/>
-                            <field name="esVip"/>
-                            <field name="descuento_vip" readonly="1"/>
-                            <field name="reservas" widget="one2many_list"/>
+                            <field name="name" string="Nombre del Cliente" required="True"/>
+                            <field name="email" string="Correo Electrónico"/>
+                            <field name="phone" string="Teléfono"/>
+                            <field name="mobile" string="Móvil"/>
+                            <field name="website" string="Sitio Web"/>
+                            <field name="title" string="Título"/>
                         </group>
+
+                        <!-- Grupo de direcciones y contactos -->
+                        <group>
+                            <field name="street" string="Calle"/>
+                            <field name="city" string="Ciudad"/>
+                            <field name="zip" string="Código Postal"/>
+                            <field name="country_id" string="País"/>
+                        </group>
+
+                        <!-- Campo para asignar etiquetas -->
+                        <group>
+                            <field name="category_id" string="Etiquetas de Cliente"/>
+                        </group>
+
                     </sheet>
                     <footer>
-                        <button string="Guardar" type="object" name="create"/>
-                        <button string="Cancelar" special="cancel"/>
+                        <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                        <!-- Botón de guardar sin acción personalizada -->
+                        <button string="Guardar" class="btn-primary"/>
                     </footer>
                 </form>
             </field>

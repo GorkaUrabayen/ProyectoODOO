@@ -25,7 +25,7 @@ class Reserva(models.Model):
     @api.depends('servicio_ids', 'cliente_id')
     def _calcular_precio(self):
         for record in self:
-            precio_total = sum(record.servicio_ids.mapped('precio'))
+            precio_total = sum(record.servicio_ids.mapped('precio_servicio'))
             descuento = (record.cliente_id.descuento_vip / 100) if record.cliente_id.descuento_vip > 0 else 0.0
             record.precio = precio_total * (1 - descuento)
     
