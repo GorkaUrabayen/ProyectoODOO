@@ -7,15 +7,15 @@ class Servicio(models.Model):
     
     name = fields.Char(string='Nombre',required=True)
     descripcion = fields.Text(string='Descripción')
-    precio = fields.Float(string='Precio',required=True)
+    precio_servicio = fields.Float(string='Precio',required=True)
     duracion = fields.Integer(string='Duracion (en minutos)',required=True)
     disponible = fields.Boolean(string='Disponibilidad',default=True)
     reserva_ids = fields.Many2many('res.booking', string='Reservas')
 
-    @api.constrains('precio')
+    @api.constrains('precio_servicio')
     def _check_precio(self):
         for record in self:
-            if record.price<=0:
+            if record.precio_servicio<=0:
                 raise ValidationError("El precio debe ser positivo y mayor que 0")
     @api.constrains('duracion')
     def _check_duracion(self):

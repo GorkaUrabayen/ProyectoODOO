@@ -11,7 +11,7 @@
                         <group>
                             <field name="name"/>
                             <field name="descripcion"/>
-                            <field name="precio"/>
+                            <field name="precio_servicio"/>
                             <field name="duracion"/>
                             <field name="disponible"/>
                         </group>
