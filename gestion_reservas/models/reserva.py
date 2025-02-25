@@ -17,8 +17,9 @@ class Reserva(models.Model):
     precio = fields.Float(string='Precio', compute='_calcular_precio', store=True)
     factura_id = fields.Many2one('account.move', string='Factura', readonly=True)
     
-    mazmorra_ids = fields.One2many('res.mazmorra', 'reserva_id', string='Mazmorras')
-    princesa_ids = fields.One2many('res.princesa', 'reserva_id', string='Princesas')
+    # Cambiar a Many2many
+    mazmorra_ids = fields.Many2many('res.mazmorra', string='Mazmorras Asociadas')
+    princesa_ids = fields.Many2many('res.princesa', string='Princesas Asociadas')
 
     servicio_ids = fields.Many2many('res.service', string='Servicios')
 
@@ -61,6 +62,7 @@ class Reserva(models.Model):
     @api.model
     def cancelar_reserva(self):
         self.cancelar_reserva_automatica()
+    
     @api.constrains('fecha_hora')
     def _validar_fecha(self):
         for record in self:
