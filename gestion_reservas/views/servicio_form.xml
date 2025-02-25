@@ -9,11 +9,11 @@
                 <form string="Servicio">
                     <sheet>
                         <group>
-                            <field name="name" string="Nombre del Servicio" required="True"/>
-                            <field name="descripcion" string="Descripción"/>
-                            <field name="precio" string="Precio"/>
-                            <field name="duracion" string="Duración (Horas)"/>
-                            <field name="disponible" string="Disponible" widget="boolean_toggle"/>
+                            <field name="name"/>
+                            <field name="descripcion"/>
+                            <field name="precio_servicio"/>
+                            <field name="duracion"/>
+                            <field name="disponible"/>
                         </group>
                     </sheet>
                     <footer>
