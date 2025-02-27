@@ -1,6 +1,5 @@
 <odoo>
     <data>
-
         <!-- Vista de formulario para el modelo 'res.booking' -->
         <record id="view_reserva_form" model="ir.ui.view">
             <field name="name">reserva.form</field>
@@ -15,8 +14,8 @@
                             <field name="precio" string="Precio" readonly="True"/>
                         </group>
                         <group>
-                            <field name="mazmorra_ids" widget="one2many_list" string="Mazmorras Asociadas"/>
-                            <field name="princesa_ids" widget="one2many_list" string="Princesas Asociadas"/>
+                            <field name="mazmorra_ids" widget="many2many_tags" string="Mazmorras Asociadas"/>
+                            <field name="princesa_ids" widget="many2many_tags" string="Princesas Asociadas"/>
                             <field name="servicio_ids" widget="many2many_tags" string="Servicios"/>
                         </group>
                     </sheet>
@@ -28,6 +27,5 @@
                 </form>
             </field>
         </record>
-
     </data>
 </odoo>
