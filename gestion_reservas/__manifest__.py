@@ -15,9 +15,11 @@
         'security/reservas_security.xml',
         #vistas
         'views/actions.xml',
+        'views/res_booking_views.xml',
 
         'views/menu.xml',
         
+
         'views/cliente_form.xml',
         'views/mazmorra_form.xml',
         'views/princesa_form.xml',

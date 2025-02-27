@@ -4,7 +4,8 @@ from datetime import datetime, timedelta
 class Reserva(models.Model):
     _name = 'res.booking'
     _description = 'Reservas de Mazmorras'
-    
+
+
     cliente_id = fields.Many2one('res.partner', string='Cliente', required=True)
     fecha_hora = fields.Datetime(string='Fecha y Hora', required=True)
     
@@ -22,6 +23,14 @@ class Reserva(models.Model):
     princesa_ids = fields.Many2many('res.princesa', string='Princesas Asociadas')
 
     servicio_ids = fields.Many2many('res.service', string='Servicios')
+    def name_get(self):
+        result = []
+        for record in self:
+            fecha = record.fecha_hora.strftime("%d/%m/%Y %H:%M") if record.fecha_hora else ''
+            # Combina el nombre, el id y la fecha en una sola cadena
+            display_name = "{} (ID: {}) - {}".format(record.cliente_id.name, record.id, fecha)
+            result.append((record.id, display_name))
+        return result
 
     @api.depends('servicio_ids', 'cliente_id')
     def _calcular_precio(self):
