@@ -10,7 +10,11 @@
           <field name="cliente_id" string="Cliente"/>
           <field name="fecha_hora" string="Fecha/Hora"/>
           <field name="estado" string="Estado"/>
+          <field name="mazmorra_ids" string="Mazmorras" widget="many2many_tags"/>
+          <field name="princesa_ids" string="Princesas" widget="many2many_tags"/>
+          <field name="servicio_ids" string="Servicios" widget="many2many_tags"/>
           <field name="precio" string="Precio"/>
+
         </list>
       </field>
     </record>
