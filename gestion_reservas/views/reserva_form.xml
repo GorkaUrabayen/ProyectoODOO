@@ -8,22 +8,27 @@
                 <form string="Reserva de Mazmorra">
                     <sheet>
                         <group>
-                            <field name="cliente_id" string="Cliente" required="True"/>
-                            <field name="fecha_hora" string="Fecha y Hora"/>
-                            <field name="estado" string="Estado"/>
-                            <field name="precio" string="Precio" readonly="True"/>
+                            <field name="cliente_id" string="Cliente" required="True" />
+                            <field name="fecha_hora" string="Fecha y Hora" />
+                            <field name="estado" string="Estado" />
+                            <field name="precio" string="Precio" readonly="True" />
                         </group>
                         <group>
-                            <field name="mazmorra_ids" widget="many2many_tags" string="Mazmorras Asociadas"/>
-                            <field name="princesa_ids" widget="many2many_tags" string="Princesas Asociadas"/>
-                            <field name="servicio_ids" widget="many2many_tags" string="Servicios"/>
+                            <field name="mazmorra_ids" widget="many2many_tags"
+                                string="Mazmorras Asociadas" />
+                            <field name="princesa_ids" widget="many2many_tags"
+                                string="Princesas Asociadas" />
+                            <field name="servicio_ids" widget="many2many_tags" string="Servicios" />
                         </group>
                     </sheet>
                     <footer>
-                        <button string="Confirmar Reserva" type="object" name="confirmar_reserva" class="btn-success"/>
-                        <button string="Cancelar Reserva" type="object" name="cancelar_reserva" class="btn-danger"/>
-                        <button string="Cancelar" special="cancel"/>
+                        <button string="Confirmar Reserva" type="object" name="confirmar_reserva"
+                            class="btn-success" />
+                        <button string="Cancelar Reserva" type="object" name="cancelar_reserva"
+                            class="btn-danger" />
+                        <button string="Cancelar" special="cancel" />
                     </footer>
+
                 </form>
             </field>
         </record>
