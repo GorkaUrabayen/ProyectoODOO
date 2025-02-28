@@ -52,13 +52,14 @@ class Reserva(models.Model):
             record.factura_id = factura.id
 
     def cancelar_reserva_automatica(self):
-        limite = datetime.now() - timedelta(hours=24)
+        """ Cancela reservas en estado 'pendiente' que llevan más de 24 horas sin confirmarse. """
+        limite = fields.Datetime.now() - timedelta(hours=24)
         reservas_pendientes = self.search([
             ('estado', '=', 'pendiente'),
             ('create_date', '<', limite)
         ])
         reservas_pendientes.write({'estado': 'cancelada'})
-
+        self.env.cr.commit()
     @api.model
     def cancelar_reserva(self):
         self.cancelar_reserva_automatica()
