@@ -28,7 +28,6 @@
                             class="btn-danger" />
                         <button string="Cancelar" special="cancel" />
                     </footer>
-
                 </form>
             </field>
         </record>
