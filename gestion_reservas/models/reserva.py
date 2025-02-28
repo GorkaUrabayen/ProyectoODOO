@@ -5,29 +5,28 @@ class Reserva(models.Model):
     _name = 'res.booking'
     _description = 'Reservas de Mazmorras'
 
-
     cliente_id = fields.Many2one('res.partner', string='Cliente', required=True)
     fecha_hora = fields.Datetime(string='Fecha y Hora', required=True)
     
     estado = fields.Selection([
-        ('pendiente', 'Pendiente'),
-        ('confirmada', 'Confirmada'),
-        ('cancelada', 'Cancelada')
-    ], string='Estado', default='pendiente')
+    ('1_pendiente', 'Pendiente'),
+    ('2_confirmada', 'Confirmada'),
+    ('3_cancelada', 'Cancelada')
+    ], string='Estado', default='1_pendiente')
+
     
     precio = fields.Float(string='Precio', compute='_calcular_precio', store=True)
     factura_id = fields.Many2one('account.move', string='Factura', readonly=True)
     
-    # Cambiar a Many2many
-    mazmorra_ids = fields.Many2many('res.mazmorra', string='Mazmorras Asociadas')
+    # Relación One2many con Mazmorras
+    mazmorra_ids = fields.One2many('res.mazmorra', 'reserva_id', string='Mazmorras Asociadas')
     princesa_ids = fields.Many2many('res.princesa', string='Princesas Asociadas')
-
     servicio_ids = fields.Many2many('res.service', string='Servicios')
+
     def name_get(self):
         result = []
         for record in self:
             fecha = record.fecha_hora.strftime("%d/%m/%Y %H:%M") if record.fecha_hora else ''
-            # Combina el nombre, el id y la fecha en una sola cadena
             display_name = "{} (ID: {}) - {}".format(record.cliente_id.name, record.id, fecha)
             result.append((record.id, display_name))
         return result

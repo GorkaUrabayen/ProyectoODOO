@@ -34,4 +34,19 @@
         <field name="res_model">res.service</field>
         <field name="view_mode">list,form</field>
     </record>
+    <!-- Acción para vista Kanban de Reservas -->
+    <record id="action_booking_kanban" model="ir.actions.act_window">
+      <field name="name">Reservas Kanban</field>
+      <field name="res_model">res.booking</field>
+      <field name="view_mode">kanban,form</field>
+      <field name="view_id" ref="view_booking_kanban"/>
+    </record>
+
+    <!-- Acción para vista Calendario de Reservas -->
+    <record id="action_booking_calendar" model="ir.actions.act_window">
+      <field name="name">Calendario de Reservas</field>
+      <field name="res_model">res.booking</field>
+      <field name="view_mode">calendar,form</field>
+      <field name="view_id" ref="view_booking_calendar"/>
+    </record>
 </odoo>

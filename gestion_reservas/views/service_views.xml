@@ -1,0 +1,54 @@
+<odoo>
+  <data noupdate="0">
+
+    <!-- ===================== VISTA LISTA PARA res.service ===================== -->
+    <record id="view_service_list" model="ir.ui.view">
+      <field name="name">res.service.list</field>
+      <field name="model">res.service</field>
+      <field name="arch" type="xml">
+        <list string="Lista de Servicios">
+          <field name="name" string="Nombre"/>
+          <field name="precio_servicio" string="Precio"/>
+          <field name="duracion" string="Duración (min)"/>
+          <field name="disponible" string="Disponible"/>
+        </list>
+      </field>
+    </record>
+
+    <!-- ===================== VISTA FORMULARIO PARA res.service ===================== -->
+    <record id="view_service_form" model="ir.ui.view">
+      <field name="name">res.service.form</field>
+      <field name="model">res.service</field>
+      <field name="arch" type="xml">
+        <form string="Servicio">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="precio_servicio"/>
+              <field name="duracion"/>
+              <field name="disponible"/>
+            </group>
+            <group string="Descripción">
+              <field name="descripcion" colspan="2"/>
+            </group>
+            <group string="Reservas Asociadas">
+              <field name="reserva_ids" widget="many2many_tags"/>
+            </group>
+          </sheet>
+          <footer>
+            <button string="Cancelar" special="cancel" class="btn-secondary"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <!-- ===================== ACCIÓN PARA res.service ===================== -->
+    <record id="action_res_service" model="ir.actions.act_window">
+      <field name="name">Servicios</field>
+      <field name="res_model">res.service</field>
+      <field name="view_mode">list,form</field>
+      <field name="view_id" ref="view_service_list"/>
+    </record>
+
+  </data>
+</odoo>
