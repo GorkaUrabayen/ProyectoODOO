@@ -1,0 +1,24 @@
+<odoo>
+  <data noupdate="0">
+    <!-- VISTA CALENDARIO PARA res.booking -->
+    <record id="view_booking_calendar" model="ir.ui.view">
+      <field name="name">res.booking.calendar</field>
+      <field name="model">res.booking</field>
+      <field name="arch" type="xml">
+        <calendar string="Calendario de Reservas" date_start="fecha_hora" mode="day">
+          <field name="cliente_id"/>
+          <field name="estado"/>
+          <field name="precio"/>
+        </calendar>
+      </field>
+    </record>
+
+    <!-- ACCIÓN PARA LA VISTA CALENDARIO -->
+    <record id="action_booking_calendar" model="ir.actions.act_window">
+      <field name="name">Calendario de Reservas</field>
+      <field name="res_model">res.booking</field>
+      <field name="view_mode">calendar,form</field>
+      <field name="view_id" ref="view_booking_calendar"/>
+    </record>
+  </data>
+</odoo>

@@ -1,96 +1,78 @@
 from odoo import models, fields, api
 from datetime import datetime, timedelta
-from odoo.exceptions import UserError
 
 class Reserva(models.Model):
     _name = 'res.booking'
     _description = 'Reservas de Mazmorras'
-    
+
     cliente_id = fields.Many2one('res.partner', string='Cliente', required=True)
     fecha_hora = fields.Datetime(string='Fecha y Hora', required=True)
     
     estado = fields.Selection([
-        ('pendiente', 'Pendiente'),
-        ('confirmada', 'Confirmada'),
-        ('cancelada', 'Cancelada')
-    ], string='Estado', default='pendiente')
+    ('1_pendiente', 'Pendiente'),
+    ('2_confirmada', 'Confirmada'),
+    ('3_cancelada', 'Cancelada')
+    ], string='Estado', default='1_pendiente')
+
     
     precio = fields.Float(string='Precio', compute='_calcular_precio', store=True)
     factura_id = fields.Many2one('account.move', string='Factura', readonly=True)
     
-    mazmorra_ids = fields.Many2many('res.mazmorra', string='Mazmorras Asociadas')
+    # Relación One2many con Mazmorras
+    mazmorra_ids = fields.One2many('res.mazmorra', 'reserva_id', string='Mazmorras Asociadas')
     princesa_ids = fields.Many2many('res.princesa', string='Princesas Asociadas')
-
     servicio_ids = fields.Many2many('res.service', string='Servicios')
 
-    @api.depends('servicio_ids', 'cliente_id.descuento_vip')
+    def name_get(self):
+        result = []
+        for record in self:
+            fecha = record.fecha_hora.strftime("%d/%m/%Y %H:%M") if record.fecha_hora else ''
+            display_name = "{} (ID: {}) - {}".format(record.cliente_id.name, record.id, fecha)
+            result.append((record.id, display_name))
+        return result
+
+    @api.depends('servicio_ids', 'cliente_id')
     def _calcular_precio(self):
         for record in self:
             precio_total = sum(record.servicio_ids.mapped('precio_servicio'))
             descuento = (record.cliente_id.descuento_vip / 100) if record.cliente_id.descuento_vip > 0 else 0.0
             record.precio = precio_total * (1 - descuento)
-
+    
     def confirmar_reserva(self):
         for record in self:
-            servicios_no_disponibles = record.servicio_ids.filtered(lambda s: not s.disponible)
-            if servicios_no_disponibles:
-                raise UserError(f"No se puede confirmar la reserva. Los siguientes servicios no están disponibles: {', '.join(servicios_no_disponibles.mapped('name'))}")
-
-        record.estado = 'confirmada'
-        record._generar_factura()
+            if record.estado == 'pendiente' and all(servicio.disponible for servicio in record.servicio_ids):
+                record.estado = 'confirmada'
+                record._generar_factura()
 
     def _generar_factura(self):
         for record in self:
             if not record.servicio_ids:
                 continue
-        
-            # Buscar factura existente para el cliente
-            factura = self.env['account.move'].search([
-                ('partner_id', '=', record.cliente_id.id),
-                ('move_type', '=', 'out_invoice'),
-                ('state', '=', 'draft')  # Si la factura está en borrador
-            ], limit=1)
-            
-            if not factura:
-                factura = self.env['account.move'].create({
-                    'partner_id': record.cliente_id.id,
-                    'move_type': 'out_invoice',
-                    'invoice_line_ids': [(0, 0, {
-                        'name': ', '.join(record.servicio_ids.mapped('name')),
-                        'quantity': 1,
-                        'price_unit': record.precio,
-                    })]
-                })
-            
+            factura = self.env['account.move'].create({
+                'partner_id': record.cliente_id.id,
+                'move_type': 'out_invoice',
+                'invoice_line_ids': [(0, 0, {
+                    'name': ', '.join(record.servicio_ids.mapped('name')),
+                    'quantity': 1,
+                    'price_unit': record.precio,
+                })]
+            })
             record.factura_id = factura.id
 
-    @api.model
     def cancelar_reserva_automatica(self):
-        """ Cancela reservas en estado 'pendiente' que llevan más de 24 horas sin confirmarse. """
-        limite = fields.Datetime.now() - timedelta(hours=24)
+        limite = datetime.now() - timedelta(hours=24)
         reservas_pendientes = self.search([
             ('estado', '=', 'pendiente'),
             ('create_date', '<', limite)
         ])
         reservas_pendientes.write({'estado': 'cancelada'})
-        self.env.cr.commit()
 
+    @api.model
     def cancelar_reserva(self):
-        """ Permite cancelar una reserva manualmente """
-        for record in self:
-            if record.estado == 'pendiente':
-                record.estado = 'cancelada'
-            else:
-                raise UserError("Solo se pueden cancelar las reservas que están pendientes.")
+        self.cancelar_reserva_automatica()
     
     @api.constrains('fecha_hora')
     def _validar_fecha(self):
         for record in self:
             if record.fecha_hora < fields.Datetime.now():
                 raise models.ValidationError('No se pueden hacer reservas en fechas pasadas.')
-
-    @api.constrains('mazmorra_ids', 'princesa_ids')
-    def _check_mazmorra_princesa(self):
-        for record in self:
-            if not record.mazmorra_ids and not record.princesa_ids:
-                raise models.ValidationError("Debes seleccionar al menos una mazmorra o una princesa para la reserva.")
